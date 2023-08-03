@@ -17,9 +17,7 @@ public class ParrotEnemy : MonoBehaviour
     //int health = ;
     //int damage = ;
 
-    //Random attack time
-    public int minMinutes = 1;
-    public int maxMinutes = 5;  
+
 
     //Patrol
     public Vector3 walkPoint;
@@ -27,7 +25,7 @@ public class ParrotEnemy : MonoBehaviour
     public float walkPointRange;
 
     //Attack
-    //public float timeBetweenAttacks;
+    public float timeBetweenAttacks;
     bool alreadyAttack;
     public GameObject projectile;
 
@@ -46,7 +44,7 @@ public class ParrotEnemy : MonoBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<PlayerController>().transform;
+        player = FindObjectOfType<PlayerScript>().transform;
     }
 
     private void Update()
@@ -62,14 +60,11 @@ public class ParrotEnemy : MonoBehaviour
         if (!playerInAttackRange && playerInSightRange) Chase();
 
         //When will enemy chase player
-        if (playerInAttackRange && playerInSightRange) Attack(); 
+        if (playerInAttackRange && playerInSightRange) Attack();
+
+
     }
 
-    //Random attack range
-    private void RandomAttackTime()
-    {
-        return Random.Range(minMinutes, maxMinutes);
-    }
 
     //Patrol
     private void Patrol()
@@ -115,13 +110,13 @@ public class ParrotEnemy : MonoBehaviour
 
         if (!alreadyAttack)
         {
-            Debug.Log("Health -1");
-            //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+
+            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
 
             alreadyAttack = true;
-            Invoke(nameof(ResetAttack), RandomAttackTime());
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
 
         }
     }
@@ -132,13 +127,25 @@ public class ParrotEnemy : MonoBehaviour
         alreadyAttack = false;
     }
 
+    //Enemy being attacked
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        //If enemy gets hit by player bullet
+        if (collision.gameObject.tag == "PlayerBullet")
+        {
+            health += damage;
+            DestroyEnemy();
+        }
+    }
+
     //Enemy died
-   /* private void DestroyEnemy()
+    private void DestroyEnemy()
     {
         if (health <= 0)
         {
             //Destroy(GameObject.FindWithTag("Enemy"));
             Destroy(gameObject);
         }
-    } */
+    }
 }
