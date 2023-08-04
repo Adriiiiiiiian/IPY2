@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public GameObject playerBody;
 
+    bool mouseclick = false;
+
 
     /// <summary>
     /// Called when the Move action is detected.
@@ -126,9 +128,9 @@ public class PlayerController : MonoBehaviour
         
         //Camera will not go upsidedown
         localCameraRot.x = Mathf.Clamp(localCameraRot.x, -90, 90);
-        
+
         //Player Camera movement
-        playerCamera.localRotation = Quaternion.Euler(localCameraRot);
+        playerCamera.transform.rotation = Quaternion.Euler(localCameraRot);
 
         //Player will move along with the camera direction
         transform.rotation = Quaternion.Euler(0,localCameraRot.y,0);
@@ -158,13 +160,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
 
+    void OnFire()
+    {
+
+
+
+        mouseclick = true;
+
+
+
+
+    }
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        Debug.Log("HI");
+        
         
     }
 
@@ -174,5 +186,23 @@ public class PlayerController : MonoBehaviour
         Debug.Log(canJump);
         Movement();
         Rotation();
+        RaycastHit hitInfo;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, 3))
+        {
+            //when in the raycast area infront of the camera and when clicking on the game object to collect, it will update collected items and call collectCode to play a sound and destroy a game object
+            if (hitInfo.transform.tag == "collectable" && mouseclick)
+            {
+                Debug.Log("collectable" + hitInfo.transform.gameObject.name);
+                Debug.Log("click");
+
+
+
+                
+
+                hitInfo.transform.GetComponent<collectCode>().Collected();
+
+            }
+        }
+        mouseclick = false;
     }
 }

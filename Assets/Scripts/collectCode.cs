@@ -12,10 +12,11 @@ using TMPro;
 public class collectCode : MonoBehaviour
 {
     public TextMeshProUGUI collectText;
-    public collectUI updateText;
+    //public collectListScript updateText;
     public TextMeshProUGUI collectTextScene1;
     public AudioSource collectEffect;
     public GameObject lockDoor;
+    int collectedObjects = 0;
 
     /// <summary>
     /// the first list is all the the things needed to collect in the first scene
@@ -37,12 +38,13 @@ public class collectCode : MonoBehaviour
     public void Collected()
     {
         //this sends the game object of the item collected over to collectListScript
-        updateText.collectText(gameObject.name);
+        //updateText.collectText(gameObject.name);
 
         //this destroys the game object clicked on and plays a sound effect
         Debug.Log("collected");
         Destroy(gameObject);
         //collectEffect.Play();
+        collectedObjects += 1;
     }
 
 }
