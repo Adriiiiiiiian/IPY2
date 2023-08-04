@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3500586211715870838}
   - component: {fileID: 8146676320667334580}
   - component: {fileID: 8489918008566781566}
-  - component: {fileID: 1651554459}
+  - component: {fileID: 1260154075}
+  - component: {fileID: 70597059}
   m_Layer: 5
   m_Name: fadeUI
   m_TagString: Untagged
@@ -101,7 +102,7 @@ Animator:
   m_GameObject: {fileID: 1351402174880491304}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3eb9f2491afee3f4cb826b4f19fc137f, type: 2}
+  m_Controller: {fileID: 9100000, guid: bc4e057866df63946995b7e66ad6e27b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -112,7 +113,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1651554459
+--- !u!114 &1260154075
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +122,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1351402174880491304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46b78934fefd21d4b841fb42129f1862, type: 3}
+  m_Script: {fileID: 11500000, guid: 932ad0e38f7709e4b800152add33a726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeUI: {fileID: 1351402174880491304}
+  portalMsg: {fileID: 0}
+--- !u!114 &70597059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351402174880491304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d424b9c1265566a46b7b6f8d0fa0137e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   transistion: {fileID: 8489918008566781566}
