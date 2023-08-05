@@ -18,12 +18,7 @@ public class collectCode : MonoBehaviour
     public GameObject lockDoor;
     int collectedObjects = 0;
 
-    /// <summary>
-    /// the first list is all the the things needed to collect in the first scene
-    /// the second list is all the things you need to collect in general in the game
-    /// </summary>
-    List<string> collectScene1 = new List<string> { "nail", "hammer", "screw", "screwdriver" };
-    List<string> collectList = new List<string> { "nail", "hammer", "screw", "screwdriver", "crystal" };
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,8 +38,9 @@ public class collectCode : MonoBehaviour
         //this destroys the game object clicked on and plays a sound effect
         Debug.Log("collected");
         Destroy(gameObject);
-        //collectEffect.Play();
+        collectEffect.Play();
         collectedObjects += 1;
+        //collectText.text = "evidence to collect left: " + (3- collectedObjects);
     }
 
 }

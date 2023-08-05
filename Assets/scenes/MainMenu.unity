@@ -2181,6 +2181,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'https://www.youtube.com/watch?v=xLYLW8YLQ-8&list=PLBD5B3B5A08C5B726&index=14
 
+    https://www.youtube.com/watch?v=AFYWsbUSasw
+
+    https://www.youtube.com/watch?v=MfG8_1JpEcs&list=PLBD5B3B5A08C5B726&index=7
+
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3390,7 +3394,7 @@ PrefabInstance:
     - target: {fileID: 1351402174880491304, guid: d052edc13c9e6d94596bd33dcfd4343b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1919181478586123420, guid: d052edc13c9e6d94596bd33dcfd4343b,
         type: 3}

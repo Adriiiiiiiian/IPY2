@@ -63,6 +63,18 @@ public class PlayerController : MonoBehaviour
     public GameObject playerBody;
 
     bool mouseclick = false;
+    private nextSceneAnimation transitionFade;
+
+    private float sprintSpeed = 9f;
+    private float originalSpeed = 5f;
+
+    private GameObject sprintPool;
+
+    private StaminaController stamina;
+    public float playerStamina = 100.0f;
+    [SerializeField] public float maxStamina = 100.0f;
+    public bool weAreSprinting = false;
+    public bool hasRegenerated = true;
 
 
     /// <summary>
@@ -77,6 +89,22 @@ public class PlayerController : MonoBehaviour
     //Player Movement
     private void Movement()
     {
+        if (Input.GetKey("left shift"))
+        {
+            stamina = sprintPool.GetComponent<StaminaController>();
+            stamina.sprinting();
+            baseMoveSpeed = sprintSpeed;
+
+            weAreSprinting = false;
+            Debug.Log("run run run");
+
+        }
+        else
+        {
+            baseMoveSpeed = originalSpeed;
+
+
+        }
         //Moving forward
         Vector3 forwardDirection = transform.forward;       
         
@@ -175,15 +203,16 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        
-        
+        //Cursor.lockState = CursorLockMode.Locked;
+        sprintPool = GameObject.Find("Stamina_Canvas");
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(canJump);
+        //Debug.Log(canJump);
         Movement();
         Rotation();
         RaycastHit hitInfo;
@@ -204,5 +233,13 @@ public class PlayerController : MonoBehaviour
             }
         }
         mouseclick = false;
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Manager")
+        {
+            other.GetComponent<ManagerSpeak>().showManagerUI();
+            
+        }
     }
 }
