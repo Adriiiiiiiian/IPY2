@@ -62,6 +62,20 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public GameObject playerBody;
 
+    bool mouseclick = false;
+    private nextSceneAnimation transitionFade;
+
+    private float sprintSpeed = 9f;
+    private float originalSpeed = 5f;
+
+    private GameObject sprintPool;
+
+    private StaminaController stamina;
+    public float playerStamina = 100.0f;
+    [SerializeField] public float maxStamina = 100.0f;
+    public bool weAreSprinting = false;
+    public bool hasRegenerated = true;
+
 
     /// <summary>
     /// Called when the Move action is detected.
@@ -75,6 +89,22 @@ public class PlayerController : MonoBehaviour
     //Player Movement
     private void Movement()
     {
+        if (Input.GetKey("left shift"))
+        {
+            stamina = sprintPool.GetComponent<StaminaController>();
+            stamina.sprinting();
+            baseMoveSpeed = sprintSpeed;
+
+            weAreSprinting = false;
+            Debug.Log("run run run");
+
+        }
+        else
+        {
+            baseMoveSpeed = originalSpeed;
+
+
+        }
         //Moving forward
         Vector3 forwardDirection = transform.forward;       
         
@@ -126,7 +156,7 @@ public class PlayerController : MonoBehaviour
         
         //Camera will not go upsidedown
         localCameraRot.x = Mathf.Clamp(localCameraRot.x, -90, 90);
-        
+
         //Player Camera movement
         playerCamera.transform.rotation = Quaternion.Euler(localCameraRot);
 
@@ -158,21 +188,58 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
 
+    void OnFire()
+    {
+
+
+
+        mouseclick = true;
+
+
+
+
+    }
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Debug.Log("HI");
-        
+        //Cursor.lockState = CursorLockMode.Locked;
+        sprintPool = GameObject.Find("Stamina_Canvas");
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(canJump);
+        //Debug.Log(canJump);
         Movement();
         Rotation();
+        RaycastHit hitInfo;
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, 3))
+        {
+            //when in the raycast area infront of the camera and when clicking on the game object to collect, it will update collected items and call collectCode to play a sound and destroy a game object
+            if (hitInfo.transform.tag == "collectable" && mouseclick)
+            {
+                Debug.Log("collectable" + hitInfo.transform.gameObject.name);
+                Debug.Log("click");
+
+
+
+                
+
+                hitInfo.transform.GetComponent<collectCode>().Collected();
+
+            }
+        }
+        mouseclick = false;
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Manager")
+        {
+            other.GetComponent<ManagerSpeak>().showManagerUI();
+            
+        }
     }
 }
