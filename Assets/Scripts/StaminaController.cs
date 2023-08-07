@@ -43,7 +43,7 @@ public class StaminaController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateStamina(0);
+        //UpdateStamina(0);
         ///regenerates their stamina
         if (!playerController.weAreSprinting)
         {

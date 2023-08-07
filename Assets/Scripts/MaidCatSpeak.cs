@@ -1,3 +1,10 @@
+/*
+ * Author: Grace Foo
+ * Date: 6/8/2023
+ * Description: Code for the speech of the maid
+ */
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,11 +17,14 @@ public class MaidCatSpeak : MonoBehaviour
     public AudioSource dialog2;
     public AudioSource dialog3;
 
+    int talking = 0;
+
     public void showMaidUI()
     {
         maidText.gameObject.SetActive(true);
 
         dialog1.Play();
+        talking = 1;
 
     }
 
@@ -32,6 +42,7 @@ public class MaidCatSpeak : MonoBehaviour
     {
 
         maidText.gameObject.SetActive(false);
+        talking = 0;
 
     }
 

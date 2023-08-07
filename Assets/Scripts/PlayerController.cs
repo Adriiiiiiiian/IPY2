@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// The speed at which the player rotates
     /// </summary>
-    public float rotationSpeed = 60f;       
+    public float rotationSpeed = 60f;
 
     /// <summary>
     /// The camera attached to the player object
@@ -82,10 +82,10 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void OnMove(InputValue value)
     {
-        movementInput = value.Get<Vector2>();                     
-        
+        movementInput = value.Get<Vector2>();
+
     }
-    
+
     //Player Movement
     private void Movement()
     {
@@ -106,19 +106,19 @@ public class PlayerController : MonoBehaviour
 
         }
         //Moving forward
-        Vector3 forwardDirection = transform.forward;       
-        
+        Vector3 forwardDirection = transform.forward;
+
         //Moving right + left
-        Vector3 rightDirection = transform.right; 
+        Vector3 rightDirection = transform.right;
 
         //Player Movement
-        transform.position += ((forwardDirection * movementInput.y + rightDirection * movementInput.x) * baseMoveSpeed * Time.deltaTime );
+        transform.position += ((forwardDirection * movementInput.y + rightDirection * movementInput.x) * baseMoveSpeed * Time.deltaTime);
     }
 
     /// <summary>
     /// Called when the Jump action is detected.
     /// </summary>
-    
+
     void OnJump()
     {
         if (canJump == true)
@@ -128,21 +128,22 @@ public class PlayerController : MonoBehaviour
     }
 
 
-     
+
 
 
     /// <summary>
     /// Called when the Look action is detected.
     /// </summary>
     /// <param name="value"></param>
-     void OnLook(InputValue value){
-        
+    void OnLook(InputValue value)
+    {
+
         //rotation value for camera to look up and down
-        rotationInput.x = -value.Get<Vector2>().y;                      
-        
+        rotationInput.x = -value.Get<Vector2>().y;
+
         //rotation value for camera to look left and right
-        rotationInput.y = value.Get<Vector2>().x;                        
-        
+        rotationInput.y = value.Get<Vector2>().x;
+
     }
 
     /// Player rotation
@@ -150,19 +151,20 @@ public class PlayerController : MonoBehaviour
     {
         //up and down
         localCameraRot.x += rotationInput.x * rotationSpeed * Time.deltaTime;
-        
+
         //left and right
         localCameraRot.y += rotationInput.y * rotationSpeed * Time.deltaTime;
-        
+
         //Camera will not go upsidedown
         localCameraRot.x = Mathf.Clamp(localCameraRot.x, -90, 90);
 
         //Player Camera movement
-        playerCamera.transform.rotation = Quaternion.Euler(localCameraRot);
+        playerCamera.localRotation = Quaternion.Euler(localCameraRot.x, transform.rotation.y, 0);
 
         //Player will move along with the camera direction
-        transform.rotation = Quaternion.Euler(0,localCameraRot.y,0);
-        
+        transform.rotation = Quaternion.Euler(0, localCameraRot.y, 0);
+
+
     }
 
     /// <summary>
@@ -170,11 +172,11 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
-    {   
+    {
         //Player can only jump while touching the ground
         if (collision.gameObject.tag == "Floor")
         {
-            canJump = true;                
+            canJump = true;
         }
     }
 
@@ -226,7 +228,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-                
+
 
                 hitInfo.transform.GetComponent<collectCode>().Collected();
 
@@ -239,7 +241,13 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.tag == "Manager")
         {
             other.GetComponent<ManagerSpeak>().showManagerUI();
-            
+
+        }
+
+        if (other.gameObject.tag == "Maid")
+        {
+            other.GetComponent<MaidCatSpeak>().showMaidUI();
+
         }
     }
 }
