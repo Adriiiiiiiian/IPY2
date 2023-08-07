@@ -158,11 +158,12 @@ public class PlayerController : MonoBehaviour
         localCameraRot.x = Mathf.Clamp(localCameraRot.x, -90, 90);
 
         //Player Camera movement
-        playerCamera.transform.rotation = Quaternion.Euler(localCameraRot);
-
+        playerCamera.localRotation = Quaternion.Euler(localCameraRot.x,transform.rotation.y,0);
+        
         //Player will move along with the camera direction
         transform.rotation = Quaternion.Euler(0,localCameraRot.y,0);
         
+       
     }
 
     /// <summary>
