@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
             baseMoveSpeed = sprintSpeed;
 
             weAreSprinting = false;
-            Debug.Log("run run run");
+            //Debug.Log("run run run");
 
         }
         else

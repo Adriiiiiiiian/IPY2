@@ -1,7 +1,7 @@
 /*
  * Author: Grace Foo
  * Date: 7/8/2023
- * Description: Code for the ai of the maid
+ * Description: Code for AI of the maid
  */
 
 using System.Collections;
@@ -17,24 +17,34 @@ public class maidAI : MonoBehaviour
     Vector3 target;
     public Transform[] waypoints;
 
-    //bool talking = false;
-    MaidCatSpeak talking;
+    Coroutine startCouroutine;
+
+    public MaidCatSpeak speakingScript;
 
     string currentState;
     string nextState;
 
+    public int talk;
+
     // Start is called before the first frame update
     void Start()
     {
-        talking = FindObjectOfType<MaidCatSpeak>();
+        //talk = talk.talking;
+        speakingScript = FindObjectOfType<MaidCatSpeak>();
+        //talking = GetComponent<MaidCatSpeak>();
         agent = GetComponent<NavMeshAgent>();
         updateDestination();
+
+        currentState = "walking";
+        nextState = currentState;
+        SwitchState();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(talking);
+        //talk = GetComponent<MaidCatSpeak>().talking;
+        //talk = speakingScript.talking;
 
         if (currentState != nextState)
         {
@@ -49,15 +59,17 @@ public class maidAI : MonoBehaviour
     }
     IEnumerator walking()
     {
-        while (talking = 0)
+        while (talk == 0)
         {
+            talk = speakingScript.talking;
             if (Vector3.Distance(transform.position, target) < 1)
             {
                 iterateWaypointIndex();
                 updateDestination();
+                Debug.Log(" walking ");
             }
 
-
+            nextState = "standing";
             yield return new WaitForEndOfFrame();
         }
 
@@ -71,14 +83,15 @@ public class maidAI : MonoBehaviour
 
     IEnumerator standing()
     {
-        while (talking = 1)
+        while (talk == 1)
         {
+
             StopEnemy();
 
-
+            nextState = "standing";
             yield return new WaitForEndOfFrame();
         }
-
+        
         SwitchState();
     }
 

@@ -51,7 +51,7 @@ public class StaminaController : MonoBehaviour
             if (playerController.playerStamina <= playerController.maxStamina - 0.01)
             {
                 playerController.playerStamina += staminaRegen; //* Time.deltaTime;
-                Debug.Log("recover");
+                //Debug.Log("recover");
                 if (playerController.playerStamina >= playerController.maxStamina)
                 {
                     //Debug.Log("sprint pool test 1");
@@ -71,7 +71,7 @@ public class StaminaController : MonoBehaviour
 
             playerController.weAreSprinting = true;
             playerController.playerStamina -= staminaDrain; //* Time.deltaTime;
-            Debug.Log(playerController.playerStamina);
+            //Debug.Log(playerController.playerStamina);
             UpdateStamina(1);
             if (playerController.playerStamina <= 0)
             {

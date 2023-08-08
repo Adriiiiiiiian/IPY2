@@ -17,7 +17,7 @@ public class MaidCatSpeak : MonoBehaviour
     public AudioSource dialog2;
     public AudioSource dialog3;
 
-    int talking = 0;
+    public int talking = 0;
 
     public void showMaidUI()
     {
