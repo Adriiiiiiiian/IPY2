@@ -340,6 +340,10 @@ MonoBehaviour:
   rotationSpeed: 60
   playerCamera: {fileID: 1577399055}
   playerBody: {fileID: 1480553748}
+  playerStamina: 100
+  maxStamina: 100
+  weAreSprinting: 0
+  hasRegenerated: 1
 --- !u!114 &1044259513
 MonoBehaviour:
   m_ObjectHideFlags: 0
