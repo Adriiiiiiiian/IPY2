@@ -1,5 +1,5 @@
 /*
- * Author: Adrian
+ * Author: Adrian, Grace
  * Date: 18/7/2023
  * Description: Basic Player movement
 */
@@ -63,7 +63,15 @@ public class PlayerController : MonoBehaviour
     public GameObject playerBody;
 
     bool mouseclick = false;
+
+    /// <summary>
+    /// this is for the scene to fade
+    /// </summary>
     private nextSceneAnimation transitionFade;
+
+    /// <summary>
+    /// These are the numbers and varibles needed for sprinting and the stamina bar
+    /// </summary>
 
     private float sprintSpeed = 9f;
     private float originalSpeed = 5f;

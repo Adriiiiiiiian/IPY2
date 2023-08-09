@@ -51,13 +51,13 @@ public class StaminaController : MonoBehaviour
             if (playerController.playerStamina <= playerController.maxStamina - 0.01)
             {
                 playerController.playerStamina += staminaRegen; //* Time.deltaTime;
-                //Debug.Log("recover");
+                
                 if (playerController.playerStamina >= playerController.maxStamina)
                 {
                     //Debug.Log("sprint pool test 1");
                     playerController.hasRegenerated = true;
                     sliderCanvasGroup.alpha = 0;
-                    //UpdateStamina(0);
+                    UpdateStamina(0);
                 }
             }
         }

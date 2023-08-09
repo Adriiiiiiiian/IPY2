@@ -19,6 +19,9 @@ public class officeSpeak : MonoBehaviour
     public AudioSource dialog1;
     public AudioSource dialog2;
     public AudioSource dialog3;
+
+    public GameObject playerCam;
+    public GameObject zoomingIn;
     // note to self the voice is between d and s
 
     // Start is called before the first frame update
@@ -35,9 +38,15 @@ public class officeSpeak : MonoBehaviour
 
     public void newspaper()
     {
+        //StartCoroutine(sequence());
         newspaperNoise.Play();
     }
-
+    IEnumerator sequence()
+    {
+        yield return new WaitForSeconds(5);
+        zoomingIn.SetActive(false);
+        playerCam.SetActive(true);
+    }
     public void ringingNoise()
     {
         ringing.Play();
