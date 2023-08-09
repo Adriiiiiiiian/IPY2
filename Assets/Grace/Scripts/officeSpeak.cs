@@ -22,6 +22,9 @@ public class officeSpeak : MonoBehaviour
 
     public GameObject playerCam;
     public GameObject zoomingIn;
+
+    public GameObject officeTalk;
+    public GameObject questPopup;
     // note to self the voice is between d and s
 
     // Start is called before the first frame update
@@ -50,10 +53,13 @@ public class officeSpeak : MonoBehaviour
     public void ringingNoise()
     {
         ringing.Play();
+        bgm1.Pause();
     }
     public void voice1()
     {
-        bgm1.Pause();
+        
+        bgm2.Play();
+        ringing.Pause();
         dialog1.Play();
     }
 
@@ -68,5 +74,10 @@ public class officeSpeak : MonoBehaviour
         dialog3.Play();
     }
 
+    public void convosationEnd()
+    {
+        officeTalk.SetActive(false);
+        questPopup.SetActive(true);
+    }
 
 }
