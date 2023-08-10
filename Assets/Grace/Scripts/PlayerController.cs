@@ -84,6 +84,20 @@ public class PlayerController : MonoBehaviour
     public bool weAreSprinting = false;
     public bool hasRegenerated = true;
 
+    /// <summary>
+    /// this bool is to make sure the pop up after talking to the maid doesnt trigger again
+    /// </summary>
+    bool talkToMaid = false;
+
+    /// <summary>
+    /// this bool is to make sure the pop up after talking to the maid doesnt trigger again
+    /// </summary>
+    bool talkToManager = false;
+
+    /// <summary>
+    /// this bool is for the player to be unable to move or move their camera when talking to any npc
+    /// </summary>
+    bool isTalking = false;
 
     /// <summary>
     /// Called when the Move action is detected.
@@ -248,13 +262,23 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Manager")
         {
-            other.GetComponent<ManagerSpeak>().showManagerUI();
+            if (talkToManager == false)
+            {
+                talkToManager = true;
+                other.GetComponent<ManagerSpeak>().showManagerUI();
+            }
+            
 
         }
 
         if (other.gameObject.tag == "Maid")
         {
-            other.GetComponent<MaidCatSpeak>().showMaidUI();
+            if (talkToMaid == false)
+            {
+                other.GetComponent<MaidCatSpeak>().showMaidUI();
+                talkToMaid = true;
+            }
+
 
         }
     }
