@@ -15,14 +15,17 @@ public class nextSceneAnimation : MonoBehaviour
     public GameObject fadeUI;
     private static int levelToLoad;
     public GameObject portalMsg;
-
+    private static int levelIndex;
 
     /// <summary>
     /// to fade to the menu
     /// </summary>
-    public void FadeToMenu()
+    public static void FadeToMenu()
     {
+        //SceneManager.LoadScene(0);
+        levelIndex = 0;
         levelToLoad = 0;
+        Debug.Log("loading main menu 2");
         transistion.SetTrigger("fadeTrigger");
     }
     /// <summary>
@@ -30,6 +33,7 @@ public class nextSceneAnimation : MonoBehaviour
     /// </summary>
     public static void FadeToLevel2()
     {
+        levelIndex = 2;
         Debug.Log("scene2");
         levelToLoad = 2;
         transistion.SetTrigger("fadeTrigger");
@@ -39,6 +43,8 @@ public class nextSceneAnimation : MonoBehaviour
     /// </summary>
     public static void FadeToLevel1()
     {
+        levelIndex = 1;
+        Debug.Log("scene1");
         levelToLoad = 1;
         transistion.SetTrigger("fadeTrigger");
     }
@@ -47,6 +53,7 @@ public class nextSceneAnimation : MonoBehaviour
     /// </summary>
     public static void FadeToLevel3()
     {
+        levelIndex = 3;
         levelToLoad = 3;
         transistion.SetTrigger("fadeTrigger");
     }
@@ -55,6 +62,7 @@ public class nextSceneAnimation : MonoBehaviour
     /// </summary>
     public static void FadeToLevel4()
     {
+        levelIndex = 4;
         levelToLoad = 4;
         transistion.SetTrigger("fadeTrigger");
     }
@@ -63,6 +71,7 @@ public class nextSceneAnimation : MonoBehaviour
     /// </summary>
     public static void FadeToLevel5()
     {
+        levelIndex = 5;
         levelToLoad = 5;
         transistion.SetTrigger("fadeTrigger");
     }
@@ -80,14 +89,16 @@ public class nextSceneAnimation : MonoBehaviour
 
     public void OnFadeComplete(int levelIndex)
     {
+        Debug.Log("fade" + levelToLoad);
         SceneManager.LoadScene(levelToLoad);
-        Debug.Log("fade ends");
+        Debug.Log("fade ends" + levelToLoad);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         transistion = (fadeUI).GetComponent<Animator>();
+       
     }
 
     // Update is called once per frame

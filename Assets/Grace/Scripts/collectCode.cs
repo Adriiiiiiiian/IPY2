@@ -16,7 +16,7 @@ public class collectCode : MonoBehaviour
     public TextMeshProUGUI collectTextScene1;
     public AudioSource collectEffect;
     public GameObject lockDoor;
-    int collectedObjects = 0;
+    static int collectedObjects = 0;
 
 
     // Start is called before the first frame update
@@ -39,8 +39,8 @@ public class collectCode : MonoBehaviour
         Debug.Log("collected");
         Destroy(gameObject);
         collectEffect.Play();
-        collectedObjects += 1;
-        //collectText.text = "evidence to collect left: " + (3- collectedObjects);
+        collectedObjects = collectedObjects + 1;
+        collectText.text = "evidence to collect left: " + (3- collectedObjects);
     }
 
 }

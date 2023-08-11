@@ -99,6 +99,17 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     bool isTalking = false;
 
+    int catsTalkedTo = 0;
+
+    //public int maidNo;
+    //public MaidCatSpeak maidSpeaking;
+
+    private GameObject doorS2;
+    private GameObject door2UI;
+    private GameObject doorNoise2;
+    private UIandAudio doorMsg2;
+    private UIandAudio accessNoise;
+
     /// <summary>
     /// Called when the Move action is detected.
     /// </summary>
@@ -107,6 +118,8 @@ public class PlayerController : MonoBehaviour
         movementInput = value.Get<Vector2>();
 
     }
+
+    
 
     //Player Movement
     private void Movement()
@@ -118,7 +131,7 @@ public class PlayerController : MonoBehaviour
             baseMoveSpeed = sprintSpeed;
 
             weAreSprinting = false;
-            //Debug.Log("run run run");
+            Debug.Log("run run run");
 
         }
         else
@@ -227,8 +240,13 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //maidNo = maidSpeaking.talking;
+
         //Cursor.lockState = CursorLockMode.Locked;
         sprintPool = GameObject.Find("Stamina_Canvas");
+        doorS2 = GameObject.Find("doorScene2");
+        door2UI = GameObject.Find("doorScene2");
+        doorNoise2 = GameObject.Find("doorsScene2");
 
 
     }
@@ -236,27 +254,63 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(canJump);
-        Movement();
-        Rotation();
-        RaycastHit hitInfo;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, 3))
+        if ( isTalking == false)
         {
-            //when in the raycast area infront of the camera and when clicking on the game object to collect, it will update collected items and call collectCode to play a sound and destroy a game object
-            if (hitInfo.transform.tag == "collectable" && mouseclick)
+            Movement();
+            Rotation();
+            RaycastHit hitInfo;
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hitInfo, 3))
             {
-                Debug.Log("collectable" + hitInfo.transform.gameObject.name);
-                Debug.Log("click");
+                //when in the raycast area infront of the camera and when clicking on the game object to collect, it will update collected items and call collectCode to play a sound and destroy a game object
+                if (hitInfo.transform.tag == "collectable" && mouseclick)
+                {
+                    Debug.Log("collectable" + hitInfo.transform.gameObject.name);
+                    Debug.Log("click");
 
 
 
 
 
-                hitInfo.transform.GetComponent<collectCode>().Collected();
+                    hitInfo.transform.GetComponent<collectCode>().Collected();
+
+                }
+
+                if (hitInfo.transform.tag == "doors2" && mouseclick)
+                {
+                    if (catsTalkedTo < 2)
+                    {
+                        if (door2UI != null)
+                        {
+                            doorMsg2 = door2UI.GetComponent<UIandAudio>();
+                            UIandAudio.showDoors2Text();
+                            //collectListScript.showDoorText();
+                        }
+
+
+                    }
+                    else
+                    {
+                        if (doorS2 != null)// && doorNoise2 != null)
+                        {
+                            //accessNoise = doorNoise2.GetComponent<UIandAudio>();
+                            //UIandAudio.doorBGM();
+                            transitionFade = doorS2.GetComponent<nextSceneAnimation>();
+                            nextSceneAnimation.FadeToLevel3();
+                            Debug.Log("click door");
+                        }
+                    }
+
+
+
+                }
+
 
             }
         }
+        //Debug.Log(canJump);
+
         mouseclick = false;
+
     }
     void OnTriggerEnter(Collider other)
     {
@@ -266,6 +320,7 @@ public class PlayerController : MonoBehaviour
             {
                 talkToManager = true;
                 other.GetComponent<ManagerSpeak>().showManagerUI();
+                catsTalkedTo = catsTalkedTo + 1;
             }
             
 
@@ -277,6 +332,9 @@ public class PlayerController : MonoBehaviour
             {
                 other.GetComponent<MaidCatSpeak>().showMaidUI();
                 talkToMaid = true;
+                catsTalkedTo = catsTalkedTo + 1;
+                Debug.Log(catsTalkedTo);
+                isTalking = true;
             }
 
 

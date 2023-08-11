@@ -3,6 +3,7 @@
  * Date: 3/8/2023
  * Description: code for the main menu
  */
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,11 @@ public class menuScript : MonoBehaviour
 {
     public Animator transistion;
 
-
+    public GameObject menu;
 
     public void PlayGame()
     {
-
+        nextSceneAnimation.FadeToLevel1();
         transistion.SetTrigger("fadeTrigger");
         Debug.Log("nextScene");
 
@@ -29,11 +30,7 @@ public class menuScript : MonoBehaviour
     }
 
 
-    public void OnFadeComplete(int levelIndex)
-    {
-        SceneManager.LoadScene(1);
-        Debug.Log("fade ends");
-    }
+
     // Start is called before the first frame update
     void Start()
     {

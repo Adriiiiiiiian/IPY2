@@ -8,6 +8,8 @@ TagManager:
   - collectable
   - Manager
   - Maid
+  - doors2
+  - doors3
   layers:
   - Default
   - TransparentFX

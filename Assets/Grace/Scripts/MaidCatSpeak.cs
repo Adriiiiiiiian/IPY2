@@ -12,7 +12,9 @@ using UnityEngine;
 public class MaidCatSpeak : MonoBehaviour
 {
     public GameObject maidText;
-   
+    public GameObject questtext1;
+    public GameObject questtext2;
+
     public AudioSource dialog1;
     public AudioSource dialog2;
     public AudioSource dialog3;
@@ -43,6 +45,8 @@ public class MaidCatSpeak : MonoBehaviour
 
         maidText.gameObject.SetActive(false);
         talking = 0;
+        questtext1.gameObject.SetActive(false);
+        questtext2.gameObject.SetActive(true);
 
     }
 

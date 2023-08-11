@@ -86,7 +86,8 @@ public class ManagerSpeak : MonoBehaviour
         wrong.Play();
         if (maxHP == 0)
         {
-            //failedToRepresent.gameObject.SetActive(true);
+            failedToRepresent.gameObject.SetActive(true);
+            managerText.gameObject.SetActive(false);
         }
     }
 
