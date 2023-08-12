@@ -104,11 +104,24 @@ public class PlayerController : MonoBehaviour
     //public int maidNo;
     //public MaidCatSpeak maidSpeaking;
 
+    /// <summary>
+    /// things needed to load the third scene
+    /// </summary>
     private GameObject doorS2;
     private GameObject door2UI;
     private GameObject doorNoise2;
     private UIandAudio doorMsg2;
+
+    int collectedItems;
+
+    /// <summary>
+    /// things needed to load the forth scene
+    /// </summary>
     private UIandAudio accessNoise;
+    private GameObject doorS3;
+    private GameObject door3UI;
+    //private GameObject doorNoise2;
+    private UIandAudio doorMsg3;
 
     /// <summary>
     /// Called when the Move action is detected.
@@ -248,6 +261,11 @@ public class PlayerController : MonoBehaviour
         door2UI = GameObject.Find("doorScene2");
         doorNoise2 = GameObject.Find("doorsScene2");
 
+        // reminder to self to change the name of the door from scene3 after bhoomika commit
+
+        doorS3 = GameObject.Find("doorScene3");
+        door3UI = GameObject.Find("doorScene3");
+        //doorNoise2 = GameObject.Find("doorsScene3");
 
     }
 
@@ -266,11 +284,7 @@ public class PlayerController : MonoBehaviour
                 {
                     Debug.Log("collectable" + hitInfo.transform.gameObject.name);
                     Debug.Log("click");
-
-
-
-
-
+                    collectedItems += 1;
                     hitInfo.transform.GetComponent<collectCode>().Collected();
 
                 }
@@ -296,6 +310,35 @@ public class PlayerController : MonoBehaviour
                             //UIandAudio.doorBGM();
                             transitionFade = doorS2.GetComponent<nextSceneAnimation>();
                             nextSceneAnimation.FadeToLevel3();
+                            Debug.Log("click door");
+                        }
+                    }
+
+
+
+                }
+
+                if (hitInfo.transform.tag == "doors3" && mouseclick)
+                {
+                    if (collectedItems < 3)
+                    {
+                        if (door3UI != null)
+                        {
+                            doorMsg3 = door3UI.GetComponent<UIandAudio>();
+                            UIandAudio.showDoors3Text();
+                            //collectListScript.showDoorText();
+                        }
+
+
+                    }
+                    else
+                    {
+                        if (doorS3 != null)// && doorNoise2 != null)
+                        {
+                            //accessNoise = doorNoise2.GetComponent<UIandAudio>();
+                            //UIandAudio.doorBGM();
+                            transitionFade = doorS3.GetComponent<nextSceneAnimation>();
+                            nextSceneAnimation.FadeToLevel4();
                             Debug.Log("click door");
                         }
                     }
