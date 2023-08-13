@@ -18,7 +18,14 @@ public class courtUI : MonoBehaviour
     public AudioSource crossExamination;
     public AudioSource bgm1;
 
+    /// <summary>
+    /// audio queues
+    /// </summary>
     public AudioSource wipe;
+    public AudioSource click;
+    public AudioSource holditSound;
+    public GameObject holdIt1;
+    public GameObject previous1;
 
     /// <summary>
     /// UI and sound effects for the character buddy used for scene 4
@@ -37,13 +44,23 @@ public class courtUI : MonoBehaviour
     /// </summary>
 
     public AudioSource rain1;
-    public AudioSource rain2;
+    public AudioSource rainT1;
     public AudioSource rainT2;
     public AudioSource rainT3;
     public GameObject raintestUI;
 
+    public AudioSource rain2;
+    public AudioSource rain3;
+
     public GameObject offStatement1;
     public GameObject continuePlotUI;
+
+    public GameObject thought1;
+    public GameObject thought2;
+    public GameObject thought3;
+    public GameObject askGlovesUI;
+
+    public GameObject rainResponseUI;
 
     /// <summary>
     /// ui to set inventory on or off
@@ -55,6 +72,17 @@ public class courtUI : MonoBehaviour
     public void wipeSound()
     {
         wipe.Play();
+    }
+
+    public void clickSound()
+    {
+        click.Play();
+    }
+
+    public void HoldIt()
+    {
+        holditSound.Play();
+        //holdIt1.gameObject.SetActive(false);
     }
 
     public void judgeDialog2()
@@ -90,7 +118,7 @@ public class courtUI : MonoBehaviour
 
     public void rainTestimony1()
     {
-        rain2.Play();
+        rainT1.Play();
     }
 
     public void rainTestimony2()
@@ -105,9 +133,31 @@ public class courtUI : MonoBehaviour
     public void showRainTestimony()
     {
         bgm1.Stop();
-        rain2.Play();
+        rainT1.Play();
         crossExamination.Play();
         raintestUI.gameObject.SetActive(true);
+    }
+
+    public void rainDialog2()
+    {
+        rain2.Play();
+    }
+
+    public void rainDialog3()
+    {
+        rain3.Play();
+    }
+
+    public void askingGloves()
+    {
+        askGlovesUI.gameObject.SetActive(true);
+        //holditSound.Play();
+        holdIt1.gameObject.SetActive(false);
+        previous1.gameObject.SetActive(false);
+    }
+    public void rainResponse()
+    {
+        rainResponseUI.gameObject.SetActive(true);
     }
     /// <summary>
     /// when the witness is saying the truth for a statement, it is false
@@ -144,17 +194,30 @@ public class courtUI : MonoBehaviour
             continuePlotUI.gameObject.SetActive(true);
             offStatement1.gameObject.SetActive(false);
             inventory1.gameObject.SetActive(false);
+            rain2.Play();
+            click.Play();
         }
         else
         {
+            click.Play();
             wrongOption();
         }
+    }
+
+    public void secondHole()
+    {
+
+        //rainResponse1.gameObject.SetActive(true);
+        //thought1.gameObject.SetActive(false);
+        //rain2.Play();
+        //click.Play();
     }
     public void wrongOption()
     {
         maxHP = maxHP - 5;
         penalizedUI.gameObject.SetActive(true);
         inventory1.gameObject.SetActive(false);
+        click.Play();
         Debug.Log(maxHP);
         //wrong.Play();
         if (maxHP == 0)
