@@ -17,6 +17,7 @@ public class courtUI : MonoBehaviour
 
     public AudioSource crossExamination;
     public AudioSource bgm1;
+    public AudioSource trillBgm;
 
     /// <summary>
     /// cameras to switch around with
@@ -30,7 +31,10 @@ public class courtUI : MonoBehaviour
     public AudioSource click;
     public AudioSource holditSound;
     public GameObject holdIt1;
+    public GameObject holdIt2;
+    public GameObject showPhotograph;
     public GameObject previous1;
+    public GameObject previous2;
 
     /// <summary>
     /// UI and sound effects for the character buddy used for scene 4
@@ -56,6 +60,7 @@ public class courtUI : MonoBehaviour
 
     public AudioSource rain2;
     public AudioSource rain3;
+    public AudioSource irkk;
 
     public GameObject offStatement1;
     public GameObject continuePlotUI;
@@ -153,6 +158,10 @@ public class courtUI : MonoBehaviour
         rain3.Play();
     }
 
+    public void irk()
+    {
+        irkk.Play();
+    }
     public void askingGloves()
     {
         //player2RainCam.gameObject.SetActive(true);
@@ -160,6 +169,18 @@ public class courtUI : MonoBehaviour
         //holditSound.Play();
         holdIt1.gameObject.SetActive(false);
         previous1.gameObject.SetActive(false);
+    }
+
+    public void showingPhoto()
+    {
+        //player2RainCam.gameObject.SetActive(true);
+        showPhotograph.gameObject.SetActive(true);
+        //holditSound.Play();
+        holdIt2.gameObject.SetActive(false);
+        previous2.gameObject.SetActive(false);
+        crossExamination.Stop();
+        trillBgm.Play();
+
     }
     public void rainResponse()
     {
