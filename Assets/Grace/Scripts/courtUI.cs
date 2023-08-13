@@ -18,7 +18,11 @@ public class courtUI : MonoBehaviour
     public AudioSource crossExamination;
     public AudioSource bgm1;
 
+    /// <summary>
+    /// cameras to switch around with
+    /// </summary>
     public GameObject judge2rainCam;
+    public GameObject player2RainCam;
     /// <summary>
     /// audio queues
     /// </summary>
@@ -151,6 +155,7 @@ public class courtUI : MonoBehaviour
 
     public void askingGloves()
     {
+        //player2RainCam.gameObject.SetActive(true);
         askGlovesUI.gameObject.SetActive(true);
         //holditSound.Play();
         holdIt1.gameObject.SetActive(false);
