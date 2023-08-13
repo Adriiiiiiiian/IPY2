@@ -18,6 +18,7 @@ public class courtUI : MonoBehaviour
     public AudioSource crossExamination;
     public AudioSource bgm1;
 
+    public GameObject judge2rainCam;
     /// <summary>
     /// audio queues
     /// </summary>
@@ -176,7 +177,7 @@ public class courtUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -189,8 +190,9 @@ public class courtUI : MonoBehaviour
     /// </summary>
     public void firstHole()
     {
-        if ( witnessTestimonyShow == true)
+        if (witnessTestimonyShow == true)
         {
+            judge2rainCam.gameObject.SetActive(false);
             continuePlotUI.gameObject.SetActive(true);
             offStatement1.gameObject.SetActive(false);
             inventory1.gameObject.SetActive(false);
@@ -228,3 +230,5 @@ public class courtUI : MonoBehaviour
     }
 
 }
+
+
