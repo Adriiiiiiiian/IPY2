@@ -14,7 +14,9 @@ public class courtUI : MonoBehaviour
     public GameObject failedToRepresent;
 
     public GameObject courtMainUI;
-
+    /// <summary>
+    /// bgm
+    /// </summary>
     public AudioSource crossExamination;
     public AudioSource bgm1;
     public AudioSource trillBgm;
@@ -25,11 +27,14 @@ public class courtUI : MonoBehaviour
     public GameObject judge2rainCam;
     public GameObject player2RainCam;
     /// <summary>
-    /// audio queues
+    /// audio queues and extra UI 
     /// </summary>
     public AudioSource wipe;
     public AudioSource click;
     public AudioSource holditSound;
+    public AudioSource badum;
+    public AudioSource realize;
+
     public GameObject holdIt1;
     public GameObject holdIt2;
     public GameObject showPhotograph;
@@ -47,6 +52,7 @@ public class courtUI : MonoBehaviour
     public AudioSource judge2;
     public AudioSource judge3;
     public GameObject penalizedUI;
+    public AudioSource wrong;
 
     /// <summary>
     /// UI and sound effects for the character rain used for scene 4
@@ -65,6 +71,9 @@ public class courtUI : MonoBehaviour
     public GameObject offStatement1;
     public GameObject continuePlotUI;
 
+    /// <summary>
+    /// main character thoughts and later responses
+    /// </summary>
     public GameObject thought1;
     public GameObject thought2;
     public GameObject thought3;
@@ -78,6 +87,11 @@ public class courtUI : MonoBehaviour
     public GameObject inventory1;
 
     bool witnessTestimonyShow = false;
+
+    /// <summary>
+    /// needed to load the final scene
+    /// </summary>
+    public Animator transistion;
 
     public void wipeSound()
     {
@@ -94,7 +108,15 @@ public class courtUI : MonoBehaviour
         holditSound.Play();
         //holdIt1.gameObject.SetActive(false);
     }
+    public void badumNoise()
+    {
+        badum.Play();
+    }
 
+    public void realiseNoise()
+    {
+        realize.Play();
+    }
     public void judgeDialog2()
     {
         judge2.Play();
@@ -247,12 +269,21 @@ public class courtUI : MonoBehaviour
         inventory1.gameObject.SetActive(false);
         click.Play();
         Debug.Log(maxHP);
-        //wrong.Play();
+        wrong.Play();
         if (maxHP == 0)
         {
             //failedToRepresent.gameObject.SetActive(true);
             courtMainUI.gameObject.SetActive(false);
         }
+    }
+
+    /// <summary>
+    /// when the function is called it calls the final scene of the game
+    /// </summary>
+    public void loadFinalScene()
+    {
+        nextSceneAnimation.FadeToLevel5();
+        transistion.SetTrigger("fadeTrigger");
     }
 
 }
