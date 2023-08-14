@@ -48,11 +48,19 @@ public class courtUI : MonoBehaviour
     public AudioSource buddy1;
     public AudioSource buddy2;
     public AudioSource buddy3;
+    
+    /// <summary>
+    /// UI and sound effects for the Judge used in scene 4
+    /// </summary>
 
     public AudioSource judge2;
     public AudioSource judge3;
     public GameObject penalizedUI;
     public AudioSource wrong;
+    public GameObject reveal;
+
+    public GameObject rainToJudge;
+    public GameObject cameraToJudge;
 
     /// <summary>
     /// UI and sound effects for the character rain used for scene 4
@@ -286,6 +294,18 @@ public class courtUI : MonoBehaviour
         transistion.SetTrigger("fadeTrigger");
     }
 
+    public void afterRecess()
+    {
+        rainToJudge.gameObject.SetActive(false);
+        cameraToJudge.gameObject.SetActive(true);
+
+    }
+
+    public void afterRecessCam()
+    {
+        judge2.Play();
+        reveal.gameObject.SetActive(true);
+    }
 }
 
 
