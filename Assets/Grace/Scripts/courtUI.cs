@@ -25,7 +25,7 @@ public class courtUI : MonoBehaviour
     /// cameras to switch around with
     /// </summary>
     public GameObject judge2rainCam;
-    public GameObject player2RainCam;
+    public GameObject rainToPlayer;
     /// <summary>
     /// audio queues and extra UI 
     /// </summary>
@@ -58,6 +58,7 @@ public class courtUI : MonoBehaviour
     public GameObject penalizedUI;
     public AudioSource wrong;
     public GameObject reveal;
+    public GameObject judgeCam;
 
     public GameObject rainToJudge;
     public GameObject cameraToJudge;
@@ -121,9 +122,10 @@ public class courtUI : MonoBehaviour
         badum.Play();
     }
 
-    public void realiseNoise()
+    public void realiseSomething()
     {
         realize.Play();
+        trillBgm.Stop();
     }
     public void judgeDialog2()
     {
@@ -249,6 +251,7 @@ public class courtUI : MonoBehaviour
         if (witnessTestimonyShow == true)
         {
             judge2rainCam.gameObject.SetActive(false);
+            rainToPlayer.gameObject.SetActive(true);
             continuePlotUI.gameObject.SetActive(true);
             offStatement1.gameObject.SetActive(false);
             inventory1.gameObject.SetActive(false);
@@ -259,6 +262,8 @@ public class courtUI : MonoBehaviour
         {
             click.Play();
             wrongOption();
+            judge2rainCam.gameObject.SetActive(false);
+            judgeCam.gameObject.SetActive(true);
         }
     }
 
@@ -298,6 +303,8 @@ public class courtUI : MonoBehaviour
     {
         rainToJudge.gameObject.SetActive(false);
         cameraToJudge.gameObject.SetActive(true);
+        bgm1.Play();
+        Debug.Log("hello");
 
     }
 
@@ -305,6 +312,7 @@ public class courtUI : MonoBehaviour
     {
         judge2.Play();
         reveal.gameObject.SetActive(true);
+        Debug.Log("hi");
     }
 }
 
