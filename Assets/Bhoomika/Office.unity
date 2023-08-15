@@ -6897,7 +6897,7 @@ PrefabInstance:
     - target: {fileID: 2471412789295993005, guid: 24af5b581b145b24aa31862f3bffd2ce,
         type: 3}
       propertyPath: m_Name
-      value: doorsScene1
+      value: doorScene1
       objectReference: {fileID: 0}
     - target: {fileID: 2471412789295993005, guid: 24af5b581b145b24aa31862f3bffd2ce,
         type: 3}
@@ -8843,7 +8843,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh679706
+  m_Name: pb_Mesh692030
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
