@@ -24,6 +24,13 @@ public class ManagerAI : MonoBehaviour
 
     
 
+    
+
+    
+    
+    private string currentstate;
+    private string nextstate;
+    
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         Vector3 randompoint = center + Random.insideUnitSphere * range;
@@ -38,68 +45,95 @@ public class ManagerAI : MonoBehaviour
         return false;
     }
 
-    void Patrolling()
+    IEnumerator Patrolling()
     {
-        if(agent.remainingDistance <= agent.stoppingDistance)
+        if(currentstate == "Patrolling")
         {
-            Vector3 point;
-            if(RandomPoint(centrepoint.position, range, out point))
+            agent.isStopped = false;
+            if(agent.remainingDistance <= agent.stoppingDistance)
             {
-                agent.SetDestination(point);
+                Vector3 point;
+                if(RandomPoint(centrepoint.position, range, out point))
+                {
+                    agent.SetDestination(point);
+                    yield return new WaitForEndOfFrame();
+                }
             }
         }
+
+        
     }
 
-    void StopEnemy()
+    IEnumerator StopEnemy()
     {
-        agent.isStopped = true;
-
-    }
-
-    void ChasePlayer()
-    {
-        float distance = Vector3.Distance(player.position, transform.position);
-        Vector3 nearPlayer = new Vector3(player.position.x,player.position.y,player.position.z);
-
-        if(distance <= detect)
+        talked = true;
+        if(currentstate == "StopEnemy")
         {
-            agent.SetDestination(nearPlayer);
+            agent.isStopped = true;
+            yield return new WaitForEndOfFrame();
+        }
 
+    }
+
+    IEnumerator ChasePlayer()
+    {
+
+
+        if(currentstate == "ChasePlayer")
+        {
+            
+            agent.SetDestination(player.position);
+            yield return new WaitForEndOfFrame();
+
+            
         }
 
     }
 
     IEnumerator Behaviour()
     {
+
+        float distance = Vector3.Distance(player.position, transform.position);
         if(speakingScript.talking == 0)
         {
-            Patrolling();
-
-            if(talked == false)
-            {
-                ChasePlayer();
-            }
+            nextstate = "Patrolling";
             
-
+            if(distance <= detect)
+            {
+                if(talked != true)
+                {
+                    Debug.Log("sdkihfvsihfbaijd");
+                    nextstate = "ChasePlayer";
+                }
+            }
         }
 
         if(speakingScript.talking == 1)
         {
-            StopEnemy();
 
-            yield return new WaitForSeconds(25);
-
+            nextstate = "StopEnemy";
+            yield return new WaitForSeconds(40);
             speakingScript.talking = 0;
-            agent.isStopped = false;
-            talked = true; 
+            
+
         }
-        
-        
-        
+
+        SwitchState();
+
     }
 
-    
+    private void SwitchState()
+    {
+        StartCoroutine(currentstate);
+    }
 
+    private void runStateMachine()
+    {
+        if(nextstate != currentstate)
+        {
+            currentstate = nextstate;
+        }
+    }
     
     
     // Start is called before the first frame update
@@ -107,12 +141,34 @@ public class ManagerAI : MonoBehaviour
     {
         agent = this.GetComponent<NavMeshAgent>();
         player = GameObject.Find("Body").GetComponent<Transform>();
+        
+        nextstate = "Patrolling";
+        runStateMachine();
+        SwitchState();
+
+        
+        
+        
+        
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        SwitchState();
+        runStateMachine();
         StartCoroutine(Behaviour());
+
+        
+        //Debug.Log(nextstate);
+
+        
+
+        
+        
+
+        
 
         
     }
