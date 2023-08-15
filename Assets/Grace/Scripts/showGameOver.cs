@@ -45,6 +45,12 @@ public class showGameOver : MonoBehaviour
         }
 
     }
+    public void QuitGame()
+    {
+        Debug.Log("quit");
+        Application.Quit();
+    }
+
     public void testfunction()
     {
         Debug.Log("testing");
