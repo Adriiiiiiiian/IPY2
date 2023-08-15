@@ -85,10 +85,11 @@ public class maidAI : MonoBehaviour
     {
         while (talk == 1)
         {
-
+            Debug.Log(speakingScript.talking);
+            talk = speakingScript.talking;
             StopEnemy();
 
-            nextState = "standing";
+            nextState = "walking";
             yield return new WaitForEndOfFrame();
         }
         

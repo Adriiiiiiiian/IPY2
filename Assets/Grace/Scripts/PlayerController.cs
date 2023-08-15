@@ -401,7 +401,7 @@ public class PlayerController : MonoBehaviour
                 other.GetComponent<MaidCatSpeak>().showMaidUI();
                 talkToMaid = true;
                 catsTalkedTo = catsTalkedTo + 1;
-                Debug.Log(catsTalkedTo);
+                //Debug.Log(catsTalkedTo);
                 //isTalking = true;
             }
 

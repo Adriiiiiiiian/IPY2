@@ -27,7 +27,7 @@ public class MaidCatSpeak : MonoBehaviour
 
         dialog1.Play();
         talking = 1;
-
+        Debug.Log(talking);
     }
 
     public void voice2()
@@ -42,12 +42,12 @@ public class MaidCatSpeak : MonoBehaviour
 
     public void doneSpeaking()
     {
-
+        
         maidText.gameObject.SetActive(false);
         talking = 0;
         questtext1.gameObject.SetActive(false);
         questtext2.gameObject.SetActive(true);
-
+        Debug.Log(talking);
     }
 
     // Start is called before the first frame update
