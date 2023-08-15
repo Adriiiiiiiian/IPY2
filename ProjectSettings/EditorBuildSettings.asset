@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Grace/scenes/MainMenu.unity
     guid: 453100908158c6349ba61b560653ee79
   - enabled: 1
-    path: Assets/Grace/scenes/temporary scene will delete later dw.unity
-    guid: bba19b265f00a004ebccba6b8b4d2338
+    path: Assets/Bhoomika/Office.unity
+    guid: 21660feddab337a4c91f7cd889bf7743
   - enabled: 1
     path: Assets/Grace/scenes/house 1.unity
     guid: 99c9720ab356a0642a771bea13969a05
@@ -21,6 +21,12 @@ EditorBuildSettings:
     path: Assets/Grace/scenes/courtroom extra.unity
     guid: b1c53ec9169eba241871ed57c26b2d39
   - enabled: 1
+    path: Assets/Bhoomika/end office.unity
+    guid: 0e48a0e8345a06846a027d90ba67a74e
+  - enabled: 1
     path: Assets/Grace/scenes/2SPAREHOUSE.unity
     guid: 3626cfe1ca523cd49a8865a2be25f595
+  - enabled: 1
+    path: Assets/Grace/scenes/temporary scene will delete later dw.unity
+    guid: bba19b265f00a004ebccba6b8b4d2338
   m_configObjects: {}

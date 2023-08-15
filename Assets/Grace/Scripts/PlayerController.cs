@@ -105,6 +105,15 @@ public class PlayerController : MonoBehaviour
     //public MaidCatSpeak maidSpeaking;
 
     /// <summary>
+    /// things needed to load the forth scene
+    /// </summary>
+    private UIandAudio accessNoise;
+    private GameObject doorS1;
+    private GameObject door1UI;
+    private GameObject doorNoise1;
+    private UIandAudio doorMsg1;
+
+    /// <summary>
     /// things needed to load the third scene
     /// </summary>
     private GameObject doorS2;
@@ -117,7 +126,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// things needed to load the forth scene
     /// </summary>
-    private UIandAudio accessNoise;
+    //private UIandAudio accessNoise;
     private GameObject doorS3;
     private GameObject door3UI;
     //private GameObject doorNoise2;
@@ -257,11 +266,15 @@ public class PlayerController : MonoBehaviour
 
         //Cursor.lockState = CursorLockMode.Locked;
         sprintPool = GameObject.Find("Stamina_Canvas");
+
+        doorS1 = GameObject.Find("doorScene1");
+        door1UI = GameObject.Find("doorScene1");
+        //doorNoise1 = GameObject.Find("doorsScene1");
+
         doorS2 = GameObject.Find("doorScene2");
         door2UI = GameObject.Find("doorScene2");
         doorNoise2 = GameObject.Find("doorsScene2");
 
-        // reminder to self to change the name of the door from scene3 after bhoomika commit
 
         doorS3 = GameObject.Find("doorScene3");
         door3UI = GameObject.Find("doorScene3");
@@ -288,8 +301,20 @@ public class PlayerController : MonoBehaviour
                     hitInfo.transform.GetComponent<collectCode>().Collected();
 
                 }
-
-                if (hitInfo.transform.tag == "doors2" && mouseclick)
+                if (hitInfo.transform.tag == "doors1" && mouseclick)
+                {
+                    Debug.Log("ray");
+                    Debug.Log(doorS1);
+                    if (doorS1 != null) //&& doorNoise1 != null)
+                    {
+                        //accessNoise = doorNoise1.GetComponent<UIandAudio>();
+                        //UIandAudio.doorBGM();
+                        transitionFade = doorS1.GetComponent<nextSceneAnimation>();
+                        nextSceneAnimation.FadeToLevel2();
+                        Debug.Log("click door");
+                    }
+                }
+                    if (hitInfo.transform.tag == "doors2" && mouseclick)
                 {
                     if (catsTalkedTo < 2)
                     {
@@ -377,7 +402,7 @@ public class PlayerController : MonoBehaviour
                 talkToMaid = true;
                 catsTalkedTo = catsTalkedTo + 1;
                 Debug.Log(catsTalkedTo);
-                isTalking = true;
+                //isTalking = true;
             }
 
 

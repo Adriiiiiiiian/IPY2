@@ -10,6 +10,7 @@ TagManager:
   - Maid
   - doors2
   - doors3
+  - doors1
   layers:
   - Default
   - TransparentFX

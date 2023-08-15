@@ -1,7 +1,7 @@
 /*
  * Author: Grace Foo
  * Date: 7/8/2023
- * Description: Code for the ai of the maid
+ * Description: Code for the UI for the first office scene
  */
 
 using System.Collections;
@@ -55,6 +55,8 @@ public class officeSpeak : MonoBehaviour
     {
         bgm1.Pause();
         dialog1.Play();
+        bgm2.Play();
+        ringing.Pause();
     }
 
     public void voice2()
