@@ -22,6 +22,8 @@ public class ManagerAI : MonoBehaviour
     public ManagerSpeak speakingScript;
     public bool talked = false;
 
+    public int talk;
+
     
 
     
@@ -92,10 +94,11 @@ public class ManagerAI : MonoBehaviour
 
     IEnumerator Behaviour()
     {
-
+        
         float distance = Vector3.Distance(player.position, transform.position);
-        if(speakingScript.talking == 0)
+        if(talk == 0)
         {
+            talk = speakingScript.talking1;
             nextstate = "Patrolling";
             
             if(distance <= detect)
@@ -108,12 +111,14 @@ public class ManagerAI : MonoBehaviour
             }
         }
 
-        if(speakingScript.talking == 1)
+        if(talk == 1)
         {
-
+            
+            talk = speakingScript.talking1;
             nextstate = "StopEnemy";
-            yield return new WaitForSeconds(40);
-            speakingScript.talking = 0;
+            yield return new WaitForSeconds(1);
+            
+
             
 
         }

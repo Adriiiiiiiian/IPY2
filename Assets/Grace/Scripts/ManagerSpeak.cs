@@ -25,7 +25,11 @@ public class ManagerSpeak : MonoBehaviour
 
     public AudioSource finalTalk;
 
-    public int talking = 0;
+    public int talking1 = 0;
+    public static int talking = 0;
+
+    bool TalkingToManager = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,13 +39,14 @@ public class ManagerSpeak : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        talking1 = talking;
     }
 
     public void showManagerUI()
     {
         managerText.gameObject.SetActive(true);
         talking = 1;
+        TalkingToManager = true;
 
         dialog1.Play();
 
@@ -96,6 +101,7 @@ public class ManagerSpeak : MonoBehaviour
         
         managerText.gameObject.SetActive(false);
         talking = 0;
+        TalkingToManager = false;
 
     }
 }
