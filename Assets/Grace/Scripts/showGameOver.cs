@@ -34,7 +34,9 @@ public class showGameOver : MonoBehaviour
         overSound.Play();
         
     }
-
+    /// <summary>
+    /// this is so when the player clicks on the main menu it loads main menu
+    /// </summary>
     public static void MainMenu()
     {
         if (gameoverUI != null)
@@ -55,6 +57,9 @@ public class showGameOver : MonoBehaviour
     {
         Debug.Log("testing");
     }
+    /// <summary>
+    /// to load the following scene
+    /// </summary>
     public void restart()
     {
         Debug.Log(currentScene);
@@ -76,7 +81,7 @@ public class showGameOver : MonoBehaviour
             //GetComponent<nextSceneAnimation>().FadeToLevel1();
             if (gameoverUI != null)
             {
-                Debug.Log("fade back to spaceship");
+              
                 transition = gameoverUI.GetComponent<nextSceneAnimation>();
                 nextSceneAnimation.FadeToLevel2();
             }
@@ -87,9 +92,21 @@ public class showGameOver : MonoBehaviour
             //GetComponent<nextSceneAnimation>().FadeToLevel1();
             if (gameoverUI != null)
             {
-                Debug.Log("fade back to spaceship");
+              
                 transition = gameoverUI.GetComponent<nextSceneAnimation>();
                 nextSceneAnimation.FadeToLevel3();
+            }
+        }
+
+        if (currentScene == 4)
+        {
+            Debug.Log("restart1");
+            //GetComponent<nextSceneAnimation>().FadeToLevel1();
+            if (gameoverUI != null)
+            {
+   
+                transition = gameoverUI.GetComponent<nextSceneAnimation>();
+                nextSceneAnimation.FadeToLevel4();
             }
         }
     }
