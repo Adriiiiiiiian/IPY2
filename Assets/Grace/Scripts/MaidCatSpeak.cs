@@ -19,7 +19,10 @@ public class MaidCatSpeak : MonoBehaviour
     public AudioSource dialog2;
     public AudioSource dialog3;
 
-    public int talking = 0;
+    public int talking1 = 0;
+    public static int talking = 0;
+
+    bool TalkingToMaid = false;
 
     public void showMaidUI()
     {
@@ -28,6 +31,7 @@ public class MaidCatSpeak : MonoBehaviour
         dialog1.Play();
         talking = 1;
         Debug.Log(talking);
+        TalkingToMaid = true;
     }
 
     public void voice2()
@@ -48,17 +52,18 @@ public class MaidCatSpeak : MonoBehaviour
         questtext1.gameObject.SetActive(false);
         questtext2.gameObject.SetActive(true);
         Debug.Log(talking);
+        TalkingToMaid = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        talking1 = talking;
     }
 }

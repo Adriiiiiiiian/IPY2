@@ -59,9 +59,13 @@ public class maidAI : MonoBehaviour
     }
     IEnumerator walking()
     {
+        Debug.Log("testing1");
+        updateDestination();
+
         while (talk == 0)
         {
-            talk = speakingScript.talking;
+            talk = speakingScript.talking1;
+            Debug.Log(talk);
             if (Vector3.Distance(transform.position, target) < 1)
             {
                 iterateWaypointIndex();
@@ -80,19 +84,22 @@ public class maidAI : MonoBehaviour
     {
         StartCoroutine(currentState);
     }
-
+    /// <summary>
+    ///  when talk = 1 then state switches and the ai stops
+    /// </summary>
+    /// <returns></returns>
     IEnumerator standing()
     {
         while (talk == 1)
         {
-            Debug.Log(speakingScript.talking);
-            talk = speakingScript.talking;
+            Debug.Log(speakingScript.talking1);
+            talk = speakingScript.talking1;
             StopEnemy();
 
             nextState = "walking";
             yield return new WaitForEndOfFrame();
         }
-        
+        Debug.Log("out");
         SwitchState();
     }
 
