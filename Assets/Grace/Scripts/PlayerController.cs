@@ -137,10 +137,12 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     ///  
     /////////////////////////
-    int maxHP = 10;
-    int hpGone = -1;
+    
+    public int maxHP = 100;
+    //int hpGone = -1;
     public bool playerHasBeenAttacked;
     ////////////////////////
+    public showGameOver gameOverCanvas;
     void OnMove(InputValue value)
     {
         movementInput = value.Get<Vector2>();
@@ -246,11 +248,16 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Debug.Log("HealthGone");
-            maxHP += hpGone;
+            //maxHP += hpGone;
+            maxHP = maxHP - 1;
             Debug.Log(maxHP);
             Debug.Log("Player has been hit!");
             playerHasBeenAttacked = true;
             Debug.Log(playerHasBeenAttacked);
+            if (maxHP == 0)
+            {
+                gameOverCanvas.gameOverPopup();
+            }
         }
     }
 
@@ -424,6 +431,8 @@ public class PlayerController : MonoBehaviour
 
 
         }
+
+       
     }
 
     

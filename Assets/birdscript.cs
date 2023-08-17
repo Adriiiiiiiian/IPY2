@@ -72,7 +72,7 @@ public class birdscript : MonoBehaviour
         {
             if(attackPlayer == false)
             {
-                int randomInt = 60 * (Random.Range(minMinutes, maxMinutes));
+                int randomInt = 8 * (Random.Range(minMinutes, maxMinutes));
                 Debug.Log(randomInt);
                 yield return new WaitForSeconds(randomInt);         
                 nextState = "Attack";
