@@ -11,14 +11,15 @@ TagManager:
   - doors2
   - doors3
   - doors1
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - navmesh
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

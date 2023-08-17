@@ -135,6 +135,12 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Called when the Move action is detected.
     /// </summary>
+    ///  
+    /////////////////////////
+    int maxHP = 10;
+    int hpGone = -1;
+    public bool playerHasBeenAttacked;
+    ////////////////////////
     void OnMove(InputValue value)
     {
         movementInput = value.Get<Vector2>();
@@ -234,6 +240,17 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "Floor")
         {
             canJump = true;
+        }
+
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("HealthGone");
+            maxHP += hpGone;
+            Debug.Log(maxHP);
+            Debug.Log("Player has been hit!");
+            playerHasBeenAttacked = true;
+            Debug.Log(playerHasBeenAttacked);
         }
     }
 
@@ -408,4 +425,7 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
+    
 }
+
