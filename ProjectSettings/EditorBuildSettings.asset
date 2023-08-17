@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Grace/scenes/MainMenu.unity
     guid: 453100908158c6349ba61b560653ee79
+  - enabled: 1
+    path: Assets/Bhoomika/office main menu.unity
+    guid: e21cdcf07dc719d4a88061dac841b36a
   - enabled: 1
     path: Assets/Bhoomika/Office.unity
     guid: 21660feddab337a4c91f7cd889bf7743
