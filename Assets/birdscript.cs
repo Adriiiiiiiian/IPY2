@@ -18,7 +18,7 @@ public class birdscript : MonoBehaviour
 
     public PlayerController scripting;
 
-
+    public AudioSource tweet;
     //Attack
     bool alreadyAttack;
     bool attackPlayer;
@@ -72,7 +72,7 @@ public class birdscript : MonoBehaviour
         {
             if(attackPlayer == false)
             {
-                int randomInt = 8 * (Random.Range(minMinutes, maxMinutes));
+                int randomInt = 5 * (Random.Range(minMinutes, maxMinutes));
                 Debug.Log(randomInt);
                 yield return new WaitForSeconds(randomInt);         
                 nextState = "Attack";
@@ -90,6 +90,7 @@ public class birdscript : MonoBehaviour
         Debug.Log("Attacking");
         bool attackAi = true;
         Debug.Log(currentState);
+        tweet.Play();
         while(attackAi)
         {
             Debug.Log("testing");

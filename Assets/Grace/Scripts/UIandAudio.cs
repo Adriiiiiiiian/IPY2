@@ -20,6 +20,8 @@ public class UIandAudio : MonoBehaviour
     public GameObject door3UI;
     public static GameObject door3Text;
 
+    public AudioSource hitSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,5 +48,11 @@ public class UIandAudio : MonoBehaviour
     public static void showDoors3Text()
     {
         door3Text.gameObject.SetActive(true);
+    }
+
+
+    public void hit()
+    {
+        hitSound.Play();
     }
 }

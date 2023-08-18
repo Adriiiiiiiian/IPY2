@@ -29,6 +29,7 @@ public class healthbar : MonoBehaviour
         currentHealth = Player.maxHP;
         //Debug.Log("health" + currentHealth);
 
+        Debug.Log(currentHealth);
         ///know how much percentage to fill the bar
         healthBar.fillAmount = currentHealth / maxHP;
        

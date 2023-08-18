@@ -141,6 +141,8 @@ public class PlayerController : MonoBehaviour
     public int maxHP = 100;
     //int hpGone = -1;
     public bool playerHasBeenAttacked;
+
+    public AudioSource Hit;
     ////////////////////////
     public showGameOver gameOverCanvas;
     void OnMove(InputValue value)
@@ -249,11 +251,13 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("HealthGone");
             //maxHP += hpGone;
-            maxHP = maxHP - 1;
+            maxHP = maxHP - 4;
             Debug.Log(maxHP);
             Debug.Log("Player has been hit!");
             playerHasBeenAttacked = true;
             Debug.Log(playerHasBeenAttacked);
+
+            Hit.Play();
             if (maxHP == 0)
             {
                 gameOverCanvas.gameOverPopup();
@@ -338,7 +342,7 @@ public class PlayerController : MonoBehaviour
                         Debug.Log("click door");
                     }
                 }
-                    if (hitInfo.transform.tag == "doors2" && mouseclick)
+                if (hitInfo.transform.tag == "doors2" && mouseclick)
                 {
                     if (catsTalkedTo < 2)
                     {
@@ -366,7 +370,7 @@ public class PlayerController : MonoBehaviour
 
 
                 }
-
+///This is to show a message if player hasnt collected all items, if they did they can enter the next scene
                 if (hitInfo.transform.tag == "doors3" && mouseclick)
                 {
                     if (collectedItems < 3)

@@ -10,7 +10,8 @@ using UnityEngine;
 
 public class ManagerSpeak : MonoBehaviour
 {
-    public int maxHP = 100;
+    static int maxHP1 = 100;
+    public int maxHP;
     public GameObject managerText;
     public GameObject failedToRepresent;
     public AudioSource dialog1;
@@ -40,6 +41,7 @@ public class ManagerSpeak : MonoBehaviour
     void Update()
     {
         talking1 = talking;
+        maxHP = maxHP1;
     }
 
     public void showManagerUI()
@@ -86,10 +88,10 @@ public class ManagerSpeak : MonoBehaviour
 
     public void wrongOption()
     {
-        maxHP = maxHP - 20;
-        Debug.Log(maxHP);
+        maxHP1 = maxHP1 - 20;
+        //Debug.Log(maxHP);
         wrong.Play();
-        if (maxHP == 0)
+        if (maxHP1 == 0)
         {
             failedToRepresent.gameObject.SetActive(true);
             managerText.gameObject.SetActive(false);
