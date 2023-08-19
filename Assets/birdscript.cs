@@ -1,3 +1,9 @@
+/*
+ * Author: Bhoomika
+ * Date: 30/7/2023
+ * Description: AI for bird
+*/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -72,7 +78,7 @@ public class birdscript : MonoBehaviour
         {
             if(attackPlayer == false)
             {
-                int randomInt = 5 * (Random.Range(minMinutes, maxMinutes));
+                int randomInt = 3 * (Random.Range(minMinutes, maxMinutes));
                 Debug.Log(randomInt);
                 yield return new WaitForSeconds(randomInt);         
                 nextState = "Attack";

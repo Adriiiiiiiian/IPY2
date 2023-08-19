@@ -1,7 +1,7 @@
 /*
  * Author: Grace Foo
  * Date: 11/8/2023
- * Description: Code for transition
+ * Description: Code for showing images and sounds
  */
 
 using System.Collections;

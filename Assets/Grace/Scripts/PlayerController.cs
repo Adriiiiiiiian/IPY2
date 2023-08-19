@@ -99,6 +99,9 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     bool isTalking = false;
 
+    /// <summary>
+    /// count if the player has talked to all cats on scene 2
+    /// </summary>
     int catsTalkedTo = 0;
 
     //public int maidNo;
@@ -379,7 +382,7 @@ public class PlayerController : MonoBehaviour
                         {
                             doorMsg3 = door3UI.GetComponent<UIandAudio>();
                             UIandAudio.showDoors3Text();
-                            //collectListScript.showDoorText();
+                            
                         }
 
 

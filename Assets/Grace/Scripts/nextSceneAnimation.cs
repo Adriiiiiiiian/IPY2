@@ -75,13 +75,7 @@ public class nextSceneAnimation : MonoBehaviour
         levelToLoad = 5;
         transistion.SetTrigger("fadeTrigger");
     }
-    /// <summary>
-    /// to show portal message
-    /// </summary>
-    public void showPortalMsg()
-    {
-        portalMsg.gameObject.SetActive(true);
-    }
+    
     /// <summary>
     /// to load the scene
     /// </summary>
